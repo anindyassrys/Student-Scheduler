@@ -3,12 +3,13 @@
 {% block content %}
   </div>
   </div>
+  {% if user.is_authenticated %}
   <div class="container">
     <form action="/qform">
         <input type="submit" class="btn btn-dark" value="Add Question"/>
     </form>
-    
   </div>
+  {% endif %}
   
   <div class="container">
     {% for quest in q %}

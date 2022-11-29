@@ -6,7 +6,7 @@ from main.views import *
 app_name = 'main'
 
 urlpatterns = [
-    path('home', home, name='home'),
+    path('', home, name='home'),
     path('QnA', QnA ,name='QnA'),
     path('detail/<int:id>',views.detail,name='detail'),
     path('qform',views.questionForm,name='questionForm'),
