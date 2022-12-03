@@ -22,8 +22,8 @@ class PenggunaTest(ObjectCreationSetUp):
     def test_getAllTodoList(self):
         user1 = Pengguna.objects.get(username="cyber-jar")
         user2 = Pengguna.objects.get(username="blue-eyes-ultimate-dragon")
-        self.assertEqual([self.list1], user1.getAllTodoList())
-        self.assertEqual([self.list2], user2.getAllTodoList())
+        self.assertTrue(self.list1 in user1.getAllTodoList())
+        self.assertTrue(self.list2 in user2.getAllTodoList())
     
     def test_getTodoList(self):
         
