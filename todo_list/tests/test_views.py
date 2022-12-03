@@ -38,7 +38,7 @@ class TestGetTodoListsView(TodoListPopulator):
         self.assertEqual(2, len(response.context['todo_lists']))
 
         self.assertEqual(self.list1.name, response.context['todo_lists'][0]['name'])
-        self.assertTrue(self.list2.name, response.context['todo_lists'][0]['name'])
+        self.assertEqual(self.list2.name, response.context['todo_lists'][1]['name'])
 
 class TestGetToDoListDetailView(TodoListPopulator):
     
