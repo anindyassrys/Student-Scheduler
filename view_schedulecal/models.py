@@ -1,11 +1,13 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
-class ScheduleCalendar(models.Model):
-    name = models.CharField(max_length=50)
-    date = models.DateTimeField()
-    detail = models.TextField()
-    owner = models.ForeignKey(User,on_delete=models.CASCADE)
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
 
-    def __str__(self):
-        return self.title
+    def get_absolute_url(self):
+        url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
+        return u'<a href="%s">%s</a>' % (url, str(self.title))
