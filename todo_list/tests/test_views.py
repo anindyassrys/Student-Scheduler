@@ -21,11 +21,11 @@ class TodoListPopulator(TestCase):
 
 class TestGetTodoListsView(TodoListPopulator):
     
-    def get_todo_lists_anonymous_user(self):
+    def test_get_todo_lists_anonymous_user(self):
         response = self.client.get(reverse('todo_lists'))
         self.assertRedirects(response, reverse('home'))
     
-    def get_todo_lists_logged_in_user(self):
+    def test_get_todo_lists_logged_in_user(self):
         self.client.login(username=self.user1.get_username, password="bcd")
         response = self.client.get(reverse('todo_lists'))
 
@@ -39,11 +39,11 @@ class TestGetTodoListsView(TodoListPopulator):
 
 class TestGetToDoListDetailView(TodoListPopulator):
     
-    def detail_todo_list_anonymous_user(self):
+    def test_detail_todo_list_anonymous_user(self):
         response = self.client.get(reverse('detail_todo_list', args=self.list1.id))
         self.assertRedirects(response, reverse('home'))
     
-    def detail_todo_list_when_todo_list_exists(self):
+    def test_detail_todo_list_when_todo_list_exists(self):
         self.client.login(username=self.user1.get_username, password="bcd")
         response = self.client.get(reverse('detail_todo_list', args=self.list1.id))
 
@@ -52,7 +52,7 @@ class TestGetToDoListDetailView(TodoListPopulator):
 
         self.assertEqual(self.list1, response.context['todo_list'])
     
-    def detail_todo_list_when_doesnt_exist(self):
+    def test_detail_todo_list_when_doesnt_exist(self):
         self.client.login(username=self.user2.get_username, password="def")
         response = self.client.get(reverse('detail_todo_list', args=self.list1.id))
 
@@ -60,11 +60,11 @@ class TestGetToDoListDetailView(TodoListPopulator):
         self.assertEqual(404, response.status_code)
 
 class UpdateToDoList(TodoListPopulator):
-    def update_todo_list_anonymous_user(self):
+    def test_update_todo_list_anonymous_user(self):
         response = self.client.get(reverse('update_todo_list', args=self.list1.id))
         self.assertRedirects(response, reverse('home'))
     
-    def update_todo_list_for_eligible_user(self):
+    def test_update_todo_list_for_eligible_user(self):
         self.client.login(username=self.user1.get_username, password="bcd")
         response = self.client.post(reverse('update_todo_list', args=self.list1.id), 
                         data=json.dumps({
@@ -80,7 +80,7 @@ class UpdateToDoList(TodoListPopulator):
         self.assertEqual(str(response.context['user']), 'a')
         self.assertEqual(200, response.status_code)
     
-    def update_todo_list_for_illegal_user(self):
+    def test_update_todo_list_for_illegal_user(self):
         self.client.login(username=self.user2.get_username, password="def")
         response = self.client.post(reverse('update_todo_list', args=self.list1.id), 
                         data=json.dumps({
@@ -98,11 +98,11 @@ class CreateToDoListView(TestCase):
         self.user1 = Pengguna.objects.create_user(username="a", password="bcd")
         self.user2 = Pengguna.objects.create_user(username="b", password="def")
 
-    def create_todo_list_anonymous_user(self):
+    def test_create_todo_list_anonymous_user(self):
         response = self.client.get(reverse('create_todo_list'))
         self.assertRedirects(response, reverse('home'))
     
-    def create_todo_list(self):
+    def test_create_todo_list(self):
         self.client.login(username=self.user1.get_username, password="bcd")
         response = self.client.post(reverse('create_todo_list'), 
                 data=json.dump({
@@ -117,11 +117,11 @@ class CreateToDoListView(TestCase):
         self.assertEqual(200, response.status_code)
 
 class DeleteToDoListView(TodoListPopulator):
-    def delete_todo_list_anonymous_user(self):
+    def test_delete_todo_list_anonymous_user(self):
         response = self.client.get(reverse('delete_todo_list'))
         self.assertRedirects(response, reverse('home'))
     
-    def delete_existed_todo_list(self):
+    def test_delete_existed_todo_list(self):
         self.client.login(username=self.user1.get_username, password="bcd")
         response = self.client.post(reverse('delete_todo_list', args=self.list1.id))
         
@@ -132,7 +132,7 @@ class DeleteToDoListView(TodoListPopulator):
         self.assertEqual(str(response.context['user']), 'a')
         self.assertEqual(200, response.status_code)
     
-    def delete_not_exist_todo_list(self):
+    def test_delete_not_exist_todo_list(self):
         self.client.login(username=self.user2.get_username, password="def")
         response = self.client.post(reverse('delete_todo_list', args=self.list2.id))
 
