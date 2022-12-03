@@ -49,8 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'coverage',
     'main',
-    'view_schedulecal'
+    'view_schedulecal',
+    'todo_list'
 ]
 
 MIDDLEWARE = [
