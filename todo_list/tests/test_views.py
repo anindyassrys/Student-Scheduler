@@ -49,7 +49,6 @@ class TestGetToDoListDetailView(TodoListPopulator):
 
         self.assertEqual(str(response.context['user']), 'a')
         self.assertEqual(200, response.status_code)
-        self.assertTemplateUsed(response, 'todo_list/detail_todo_list.html')
 
         self.assertEqual(self.list1, response.context['todo_list'])
     
