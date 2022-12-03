@@ -29,7 +29,7 @@ class Pengguna(User):
         proxy = True
     
     def getAllTodoList(self):
-        return list(self.todoList.all())
+        return self.todoList.all()
     
     def getTodoList(self, todoListId):
         try:
