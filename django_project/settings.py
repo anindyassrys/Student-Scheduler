@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'coverage',
     'main',
     'todo_list',
+    'view_notes',
     'appointment',
 ]
 
