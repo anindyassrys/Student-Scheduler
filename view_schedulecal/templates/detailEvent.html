@@ -2,11 +2,14 @@
 {% load static %}
 {% block title %}{{q.title}}{% endblock %}
 {% block content %}
+
 <html>
     <div class="container">
-        <h2>{{q.title}}</h2>
-        <p>{{q.detail}}</p>
+        <h2>{{q.description}}</h2>
+        <p>{{q.datetime}}</p>
+        <p>Sender : {{q.sender}}</p>
     </div>
-  </div>
-  </div>
-  {% endblock %}
+</div>
+</div>
+
+{% endblock %}

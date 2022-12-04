@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    time = models.DateTimeField()
 
     def get_absolute_url(self):
         url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
