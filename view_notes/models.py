@@ -5,4 +5,4 @@ class Notes(models.Model):
     isi = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.judul
