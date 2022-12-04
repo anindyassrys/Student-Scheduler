@@ -51,9 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'coverage',
     'main',
-    'notes',
     'todo_list',
     'view_notes',
+    'appointment',
 ]
 
 MIDDLEWARE = [

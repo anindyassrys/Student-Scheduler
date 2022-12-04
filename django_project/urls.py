@@ -23,4 +23,5 @@ urlpatterns = [
     path('notes/', include('notes.urls')),
     path('view-notes/', include('view_notes.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
+    path('appointment/', include('appointment.urls')),
 ]
