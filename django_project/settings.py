@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'main',
     'notes',
     'todo_list',
+    'view_notes',
 ]
 
 MIDDLEWARE = [

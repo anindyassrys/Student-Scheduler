@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from notes.models import Notes
 
 class ToDoList(models.Model):
     name = models.CharField(max_length=50)
@@ -48,21 +47,3 @@ class Pengguna(User):
             ToDo.objects.create(name=todo, todoList=todoList).save()
         todoList.save()
         return todoList
-    
-    def getAllNotesUser(self):
-        return self.notes.all()
-
-    def getNotes(self, notesId):
-        try:
-            return self.notes.filter(id=notesId).get()
-        except:
-            return None
-    
-    def deleteNotes(self, notesId):
-        notes = self.notes.filter(id=notesId).delete()
-        return notes
-    
-    def createNotes(self, notesTitle):
-        notes = Notes.objects.create(name=notesTitle, owner=self)
-        notes.save()
-        return notes
