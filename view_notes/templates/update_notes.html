@@ -1,13 +1,25 @@
-<div class="main">
-	<!-- Create a Form -->
-	<form method="POST">
-		<!-- Security token by Django -->
-		{% csrf_token %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<h2  style="text-align:center"><b>Edit Notes</b></h2>
+<br>
 
-		<!-- form as paragraph -->
-		{{ form.as_p }}
-
-		<input type="submit" value="Update">
-	</form>
-
+<form method="POST" action="" class="addForm" style="margin: auto; width: 75%;"> 
+	{% csrf_token %}
+	<div class="col">
+	  <label for="toField" style="color: rgb(0, 0, 0)">Title:</label>
+	<input type="text" id="toField" class="form-control" name="judul">
+  </div>
+<br>
+<div class="col-75">
+  <label for="fromField" style="color: rgb(0, 0, 0)">Description:</label>
+  <textarea id="fromField" name="isi"  class="form-control" style="height:300px; margin: auto; width: 100%;"></textarea>
+	
 </div>
+<br>
+  <input type ="submit" value="Update" class="btn btn-primary">
+</form>
+
+{% endblock %}
+
