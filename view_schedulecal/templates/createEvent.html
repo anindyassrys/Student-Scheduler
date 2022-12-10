@@ -1,20 +1,27 @@
-<body > 
-    <h1> Add Note</h1><br>
-    <form action="" method="POST" >
-        {% csrf_token %}
-        <div class="col">
-            <input type="text"  placeholder="Nama Event" name="title" required>
-        </div>
-        <br>
-        <div class="col">
-            <input type="datetime-local" placeholder="Waktu Event" name="time" required>
-        </div>
-        <br>
-        <div class="col">
-            <input type="text" placeholder="Title" name="description" style="height:120px; width:200px;" required>
-        </div>
-        <br>
-        <input class="btn btn-primary" style = "background-color: #FFFFFF; color: #393E46; border-color: rgb(108, 74, 74); " type ="submit" value="Submit">
-        <input class="btn btn-primary" style = "background-color: #FFFFFF; color: #393E46; border-color: rgb(108, 74, 74); " type ="reset" value="Cancel">
-    </form>
-</body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<h2  style="text-align:center"><b>Create Event</b></h2>
+<br>
+
+<form method="POST" action="" class="addForm" style="margin: auto; width: 75%;"> 
+	{% csrf_token %}
+	<div class="col">
+	  <label for="toField" style="color: rgb(0, 0, 0)">Title:</label>
+	<input type="text" id="toField" class="form-control" placeholder="Event Title" name="title">
+  </div>
+<br>
+<div class="col-75">
+  <label for="fromField" style="color: rgb(0, 0, 0)">Description:</label>
+  <textarea id="fromField" name="description"  class="form-control" placeholder="Event Description" style="height:300px; margin: auto; width: 100%;"></textarea>
+</div>
+<div class="col-75">
+    <label for="fromField" style="color: rgb(0, 0, 0)">Time:</label>
+	<input type="datetime-local" id="toField" class="form-control" name="time">
+  </div>
+<br>
+  <input type ="submit" value="Submit" class="btn btn-primary">
+</form>
+
+{% endblock %}
