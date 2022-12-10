@@ -1,0 +1,112 @@
+{%extends 'base.html'%}
+{% block title %} Create Todo List {% endblock %}
+
+{% block extra_head %} 
+  <link rel="stylesheet" href="/static/css/create_todo_list.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  {% endblock %}
+
+{% block content %}
+  <div class="container" id="main_wrapper" >
+    <h1 style="text-align: center;">Create Todo List</h1>
+    <div class="container">
+      <div class="container" id="list_wrap">
+        <form id="create_form" action="">
+            {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-text">Todo List Name</span>
+                <input class="form-control" placeholder="Todo List Name" id="list_name" value="" style="background-color: white;"></input>
+            </div>
+            <h3 style="margin-top: 5%;">ToDo</h3>
+            <div clas="container" id="todos_wrap">
+                <span id="err_msg" hidden style="color: red;">Todo name must not be blank</span>
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Todo Name" class="form-control">
+                    <button class="btn btn-danger" type="button"  onclick="del_handler()" id="del_btn" style="margin-right: 5px;">Delete</button>
+                    <button class="btn btn-success" type="button" onclick="add_handler()" id="add_btn">Add</button>
+                </div>
+            </div>
+            </div>
+            <div class="container" id="create_cancel_wrap">
+                <button type="submit" class="btn btn-primary" style="width: max-content; margin-left: 2%;">Create</button>
+                <a class="btn btn-secondary" href="{% url 'todo_lists'%}" style="width: max-content;">Cancel</a>
+            </div>
+        </form>
+  </div>
+
+
+  <script>
+    const todoNames = []
+    function add_handler(){
+        let last_elem = $("#todos_wrap").children().last(); 
+    
+        
+        let name = last_elem.find("input").val();
+        
+        if(name === undefined || name === "") {
+            $("#err_msg").prop("hidden", false);
+        }
+        else {
+            $("#err_msg").prop("hidden", true);
+            last_elem.find("input").prop("disabled", true)
+            last_elem.find("button").prop("disabled", true)
+            todoNames.push(name);
+            last_elem.append("<span style='color: gray;'>&nbsp added</span>")
+            $('#todos_wrap').append(`
+            <div class="input-group mb-3">
+                <input type="text" placeholder="Todo Name" class="form-control">
+                <button class="btn btn-danger" type="button" onclick="del_handler()" id="del_btn-${todoNames.length}" style="margin-right: 5px;">Delete</button>
+                <button class="btn btn-success" type="button" onclick="add_handler()" id="add_btn-${todoNames.length}">Add</button>
+            </div>`)
+        }
+    }; 
+    function del_handler(){
+        if (todoNames.length == 0)
+            return
+        let last_elem = $("#todos_wrap").children().last();     
+        
+        let name = last_elem.find("input").val();
+        if(name != undefined && name != "")  {
+            todoNames.pop();
+        }
+        last_elem.remove();
+        let new_last_elem = $("#todos_wrap").children().last();
+        new_last_elem.find("input").prop("disabled", false);
+        new_last_elem.find("button").prop("disabled", false);
+        new_last_elem.find("span").remove();
+        todoNames.pop();
+    }
+
+    $(document).ready((event) => {
+        $('#create_form').submit(function(event) {
+            event.preventDefault();
+            let csrf_token = $(this).serialize();
+            let new_name = $('#list_name').val();
+            if (new_name === undefined) {
+                new_name = "{{ todo_list.name }}"
+            }
+            else if(new_name.length == 0) {
+                new_name = "Untitled"
+            }
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "{% url 'create_todo_list' %}",
+                headers:{
+                    'X-CSRFToken':csrf_token.replace("csrfmiddlewaretoken=", ""),
+                },
+                data: JSON.stringify({
+                    'list_name': new_name,
+                    'todo_names': todoNames
+                }),
+                success: function(response) {
+                    alert("Todo List berhasil dibuat")
+                
+                    window.location = "{% url 'todo_lists' %}"
+                }
+            })
+        })
+    }) 
+</script>
+{% endblock %}
