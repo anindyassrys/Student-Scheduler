@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'main',
     'view_schedulecal',
     'todo_list',
-    'focus_session'
+    'focus_session',
     'view_notes',
     'appointment',
 ]
