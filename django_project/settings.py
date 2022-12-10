@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'coverage',
     'main',
     'view_schedulecal',
-    'todo_list'
+    'todo_list',
+    'focus_session'
 ]
 
 MIDDLEWARE = [
