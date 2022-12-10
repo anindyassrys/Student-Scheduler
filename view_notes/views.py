@@ -15,9 +15,11 @@ def getAllNotes(request):
 @login_required
 def createNotes(request):
 	context ={}
+
 	form = NotesForm(request.POST or None)
 	if form.is_valid():
 		form.save()	
+        
 	context['form']= form
 	return render(request, "notes_create.html", context)
 
@@ -35,9 +37,9 @@ def updateNotes(request, id):
     form = NotesForm(request.POST or None, instance = obj)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/"+id)
+        return HttpResponseRedirect("/view-notes/"+id)
     context["form"] = form
- 
+
     return render(request, "update_notes.html", context)
 
 @login_required
@@ -47,6 +49,6 @@ def deleteNotes(request, id):
  
     if request.method =="POST":
         obj.delete()
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/view-notes")
  
     return render(request, "delete_notes.html", context)
