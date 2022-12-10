@@ -47,6 +47,7 @@
     <div id="display"></div>
     <div>
       <button class="btn btn-success" id="start" onclick="watch()">Start</button>
+      <a class="btn btn-success" id="start" href="/focus">Stop</a>
     </div>
 
     <script src="https://bit.ly/codedamn-web-console"></script>
@@ -65,7 +66,8 @@
       }
 
       function watch() {
-        start.disabled = true;//the start button will be disabled once the timer starts
+        if (confirm("Are you sure to start the timer!") == true) {
+          start.disabled = true;//the start button will be disabled once the timer starts
         mins.disabled = true;
         secs.disabled = true;
         var date1 = new Date();//today's date
@@ -103,6 +105,9 @@
             window.alert("Your time has ran out!")
           }
         }, 1000);
+        } else {
+          clearInterval(x);
+        }
       }
     </script>
   </body>
