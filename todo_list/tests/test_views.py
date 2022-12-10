@@ -38,7 +38,7 @@ class TestGetTodoListsView(TodoListPopulator):
         self.assertEqual(2, len(response.context['todo_lists']))
 
         self.assertEqual(self.list1.name, response.context['todo_lists'][0]['name'])
-        self.assertTrue(self.list2.name, response.context['todo_lists'][0]['name'])
+        self.assertEqual(self.list2.name, response.context['todo_lists'][1]['name'])
 
 class TestGetToDoListDetailView(TodoListPopulator):
     
@@ -70,23 +70,26 @@ class UpdateToDoList(TodoListPopulator):
         self.client.login(username=self.user1.username, password=self.password)
         response = self.client.post(reverse('update_todo_list', args=str(self.list1.id)), 
                         data=json.dumps({
+                            'new_name': "abc",
                             'todos':[self.todo1.id]
                         }),
                         content_type='application/json'
                         )
         todo1 = ToDo.objects.get(id=self.todo1.id)
         todo2 = ToDo.objects.get(id=self.todo2.id)
+        list1 = ToDoList.objects.get(id=self.list1.id)
 
         self.assertTrue(todo1.isDone)
         self.assertFalse(todo2.isDone)
+        self.assertEqual("abc", list1.name)
 
-        self.assertEqual(str(response.context['user']), self.user1.username)
         self.assertEqual(200, response.status_code)
     
     def test_update_todo_list_for_non_existed_todo_list(self):
         self.client.login(username=self.user2.username, password=self.password)
         response = self.client.post(reverse('update_todo_list', args=str(self.list1.id)), 
                         data=json.dumps({
+                            'new_name': "cool name",
                             'todos':[self.todo2.id]
                         }),
                         content_type='application/json'
@@ -121,7 +124,6 @@ class CreateToDoListView(TodoListPopulator):
         self.assertEqual(1, len(user2.getAllTodoList()))
         self.assertTrue('new_list1', user2.getAllTodoList()[0])
 
-        self.assertEqual(str(response.context['user']), self.user2.username)
         self.assertEqual(200, response.status_code)
 
 class DeleteToDoListView(TodoListPopulator):
@@ -136,8 +138,6 @@ class DeleteToDoListView(TodoListPopulator):
         user1 = Pengguna.objects.get(username=self.user1.username)
         self.assertTrue(len(user1.getAllTodoList()) == 1)
 
-        self.assertEqual(str(response.context['user']), self.user1.username)
-        self.assertEqual(200, response.status_code)
     
     def test_delete_not_exist_todo_list(self):
         self.client.login(username=self.user2.username, password=self.password)

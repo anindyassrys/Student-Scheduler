@@ -1,13 +1,13 @@
 from django import forms
-from .models import Event
+from .models import *
 
 class EventForm(forms.ModelForm):
-	class Meta:
-		model = Event
-		fields = [
-			"title",
-			"description",
-            "time"
-		]
+    class Meta:
+        model=Event
+        fields=[
+            "time",
+            "title",
+            "description"
+        ]
 
-#testss
+
