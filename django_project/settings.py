@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'view_schedulecal',
     'todo_list',
     'focus_session'
+    'view_notes',
+    'appointment',
 ]
 
 MIDDLEWARE = [

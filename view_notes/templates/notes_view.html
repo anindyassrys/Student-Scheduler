@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main">
+	<div class="table-wraper">
+        <table class ="table">
+            <thead>
+                <th>No ID</th>
+                <th>Judul</th>
+                <th>Isi</th>
+				<th>Action</th>
+            </thead>
+            <tbody>
+                {% for data in dataset %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{data.judul}}</td>
+                    <td>{{data.isi}}</td>
+					<td>
+						<a class="btn btn-primary" href="/view-notes/{{data.id}}/update" role="button">Edit</a>
+						<a class="btn btn-danger" href="/view-notes/{{data.id}}/delete" role="button">Delete</a>
+						<a class="btn btn-outline-primary" href="/view-notes/{{data.id}}" role="button">View detail</a>
+					</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+		<div class="container">
+			<div class="vertical-center">
+			 <a class="btn btn-success" href="/view-notes/create" role="button">Create new notes</a>
+			</div>
+		  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+#main_wrapper {
+    box-sizing: border-box;
+    padding: 1%;
+}
+
+#create_wrap {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 60%;
+}
+
+#list_wrap {
+    margin-top: 2%;
+    width: 60%;
+
+}
