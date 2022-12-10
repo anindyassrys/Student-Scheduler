@@ -67,9 +67,6 @@
         let last_elem = $("#todos_wrap").children().last();     
         
         let name = last_elem.find("input").val();
-        if(name != undefined && name != "")  {
-            todoNames.pop();
-        }
         last_elem.remove();
         let new_last_elem = $("#todos_wrap").children().last();
         new_last_elem.find("input").prop("disabled", false);
