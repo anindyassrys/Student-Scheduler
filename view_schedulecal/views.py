@@ -26,3 +26,7 @@ def createEvent(request):
     context['form'] = form
     return render(request,"createEvent.html",context)
 
+def detailEvent(request,id):
+    e=Event.objects.all().get(pk=id)
+    return render(request,'detailEventE.html',{'e':e})
+
