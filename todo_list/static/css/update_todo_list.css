@@ -1,0 +1,22 @@
+#main_wrapper {
+    box-sizing: border-box;
+    padding: 1%;
+}
+
+
+#list_wrap {
+    margin-top: 2%;
+    width: 60%;
+}
+
+#todos_wrap {
+    margin-top: 2%;
+}
+
+#save_cancel_wrap {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    width: 60%;
+}
