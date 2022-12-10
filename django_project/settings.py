@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'coverage',
     'main',
+    'view_schedulecal',
     'todo_list',
+    'focus_session',
     'view_notes',
     'appointment',
 ]
