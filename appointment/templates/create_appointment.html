@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+            
+    {% endif %}
+        
+    <h2>Create Appointment</h2>
+    <form action="{% url 'create_appointment' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="receiver">Receiver</label>
+            <select name="receiver" id="receiver">
+                
+                {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option> 
+                {% endfor %}
+                    
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="datetime">Datetime</label>
+            <input type="datetime-local" id="datetime" name="datetime" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{% url 'appointments' %}" class="btn btn-secondary">Close</a>
+    </form>
+</div>
+{% endblock content %}
