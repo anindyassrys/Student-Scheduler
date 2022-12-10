@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    {% if messages %}
+    
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    
+    {% endif %}
+    <a href="{% url 'create_appointment' %}" type="button" class="btn btn-outline-primary">Create</a>
+    <h2>Sent Appointment</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Receiver</th>
+                <th>Datetime</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    
+            {% for app in sent %}
+            <tr>
+                <td>{{ app.receiver }}</td>
+                <td>{{ app.datetime }}</td>
+                <td>{{ app.description }}</td>
+                <td>
+                    {% if app.isAccepted %}
+                    Accepted
+                    {% else %}
+                    Not Accepted
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'appointment_detail' app.id %}" type="button" class="btn btn-outline-primary">Detail</a>
+                </td>
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+    </table>
+    
+    <h2>Received Appointment</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sender</th>
+                <th>Datetime</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    
+            {% for app in received %}
+            <tr>
+                <td>{{ app.sender }}</td>
+                <td>{{ app.datetime }}</td>
+                <td>{{ app.description }}</td>
+                <td>
+                    {% if app.isAccepted %}
+                    Accepted
+                    {% else %}
+                    Not Accepted
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'appointment_detail' app.id %}" type="button" class="btn btn-outline-primary">Detail</a>
+                </td>
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
+    

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main">
+  <div class="table-wraper">
+    <h1>Event</h1>
+    <a class="btn btn-success" href="/schedule/create-event" role="button">Create new event</a>
+    <br>
+        <table class ="table">
+            <thead>
+                <th>No</th>
+                <th>Judul</th>
+                <th>Waktu</th>
+        <th>Action</th>
+            </thead>
+            <tbody>
+                {% for event in e %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{event.title}}</td>
+                    <td>{{event.time}}</td>
+          <td>
+            <!-- <a class="btn btn-danger" href="/view-notes/{{data.id}}/delete" role="button">Delete</a> -->
+            <a class="btn btn-outline-primary" href="/schedule/detail/event/{{event.id}}" role="button">View detail</a>
+          </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    <br>
+    <h1>Appointment</h1>
+    <br>
+        <table class ="table">
+            <thead>
+                <th>No</th>
+                <th>Judul</th>
+                <th>Waktu</th>
+        <th>Action</th>
+            </thead>
+            <tbody>
+                {% for quest in q %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{quest.description}}</td>
+                    <td>{{quest.datetime}}</td>
+          <td>
+            <!-- <a class="btn btn-danger" href="/view-notes/{{data.id}}/delete" role="button">Delete</a> -->
+            <a class="btn btn-outline-primary" href="/schedule/detail/{{quest.id}}" role="button">View detail</a>
+          </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{q.title}} {% endblock %}
+{% block content %}
+
+<html>
+    <div class="container">
+        <h2>{{q.description}} </h2>
+        <p>{{q.datetime}}</p>
+        <p>Sender : {{q.sender}}</p>
+    </div>
+    <div style="text-align: center;">
+        <a class="btn btn-outline-primary" onclick="copyText()" role="button">Copy Link Event</a>
+        <div id="message" style="display:none;" class="answer_list" > Link is copied!</div>
+    </div>
+</div>
+</div>
+<script>
+    function copyText() {
+  
+        /* Copy text into clipboard */
+        navigator.clipboard.writeText
+            ("Link Event : https://student-scheduler.up.railway.app/schedule/detail/{{q.id}}");
+        document.getElementById('message').style.display = "block";
+    }
+</script>
+{% endblock %}

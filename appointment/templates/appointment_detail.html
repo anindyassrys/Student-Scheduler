@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    {% if messages %}
+    
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    
+    {% endif %}
+    <h2>Detail Appointment</h2>
+    <form>
+        <div class="form-group">
+            <label for="sender">Sender</label>
+            <input type="text" id="sender" class="form-control" placeholder="Disabled input" value="{{ appointment.sender }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="receiver">Receiver</label>
+            <input type="text" id="receiver" class="form-control" placeholder="Disabled input" value="{{ appointment.receiver }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="datetime">Datetime</label>
+            <input type="datetime" id="datetime" class="form-control" placeholder="Disabled input" value="{{ appointment.datetime }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" rows="3" disabled>{{ appointment.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label for="status">Status</label>
+                <div class="col-md-8">
+                    {% if appointment.isAccepted %}
+                    <input type="text" id="status" class="form-control" placeholder="Disabled input" value="Accepted" disabled>
+                    {% else %}
+                    <input type="text" id="status" class="form-control" placeholder="Disabled input" value="Not accepted" disabled>
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    
+                    {% if appointment.receiver == user %}
+                        {% if appointment.isAccepted %}
+                        <a href="{% url 'reject_appointment' appointment.id %}" class="btn btn-danger">Reject</a>
+                        {% else %}
+                        <a href="{% url 'accept_appointment' appointment.id %}" class="btn btn-primary" disabled="">Accept</a>
+                        {% endif %}
+                    {% endif %}                
+                    
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'appointments' %}" class="btn btn-secondary">Close</a>
+    </form>
+</div>
+{% endblock content %}

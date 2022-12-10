@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<h2  style="text-align:center"><b>Edit Notes</b></h2>
+<br>
+
+<form method="POST" action="" class="addForm" style="margin: auto; width: 75%;"> 
+	{% csrf_token %}
+	<div class="col">
+	  <label for="toField" style="color: rgb(0, 0, 0)">Title:</label>
+	<input type="text" id="toField" class="form-control" name="judul">
+  </div>
+<br>
+<div class="col-75">
+  <label for="fromField" style="color: rgb(0, 0, 0)">Description:</label>
+  <textarea id="fromField" name="isi"  class="form-control" style="height:300px; margin: auto; width: 100%;"></textarea>
+	
+</div>
+<br>
+<br>
+  <input type ="submit" value="Update" class="btn btn-primary">
+</form>
+{% endblock %}
+
