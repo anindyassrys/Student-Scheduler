@@ -1,5 +1,5 @@
 # 👩‍💻 About Student-Scheduler
-Student-Scheduler is a web-based platform speliazing in productivity and note-taking web application developed in Django for the final project of Software Engineering course
+Student-Scheduler is a web-based platform specialized in productivity and note-taking web application developed in Django for the final project of Software Engineering course
 
 ## 👩‍💼 Roles
 1. User (Student)
