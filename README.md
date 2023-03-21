@@ -1,87 +1,32 @@
-# Templat Proyek Django untuk Railway
+# 👩‍💻 About Student-Scheduler
+Student-Scheduler is a web-based platform speliazing in productivity and note-taking web application developed in Django for the final project of Software Engineering course
 
-Repositori ini berisi sebuah templat untuk membuat proyek Django yang siap di-*deploy* ke [Railway](https://railway.app/).
+## 👩‍💼 Roles
+1. User (Student)
+The user role is the only role in this application. Users themselves can perform all the features described in the next section.
+2. Admin
+The Admin role is a role that is enabled to answer questions from the help features listed in the application and for other maintenance purposes.
 
-## Daftar Isi
-
-- [Daftar Isi](#daftar-isi)
-- [Instruksi Penggunaan](#instruksi-penggunaan)
-- [Lisensi](#lisensi)
-- [Referensi](#referensi)
-
-## Instruksi Penggunaan
-
-### Pengembangan Lokal
-
-Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi, ikuti langkah-langkah berikut.
-
-1. Buka laman GitHub repositori templat kode, lalu klik tombol "**Use this template**"
-   untuk membuat salinan repositori ke dalam akun GitHub milikmu.
-
-2. Buka laman GitHub repositori yang dibuat dari templat, lalu gunakan perintah
-   `git clone` untuk menyalin repositorinya ke suatu lokasi di dalam sistem
-   berkas (*filesystem*) komputermu.
-
-   ```shell
-   git clone <URL ke repositori di GitHub> <path ke suatu lokasi di filesystem>
-   ```
-
-3. Masuk ke dalam repositori yang sudah di-*clone* dan jalankan perintah berikut
-   untuk menyalakan *virtual environment*.
-
-   ```shell
-   python -m venv env
-   ```
-
-4. Nyalakan *virtual environment* dengan perintah berikut.
-
-   ```shell
-   # Windows
-   .\env\Scripts\activate
-   # Linux/Unix, e.g. Ubuntu, MacOS
-   source env/bin/activate
-   ```
-
-5. Instal *dependencies* yang dibutuhkan untuk menjalankan aplikasi dengan perintah berikut.
-
-   ```shell
-   pip install -r requirements.txt
-   ```
-
-6. Jalankan aplikasi Django menggunakan server pengembangan yang berjalan secara lokal.
-
-   ```shell
-   python manage.py runserver
-   ```
-
-7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
-
-### Pengembangan di Railway
-
-1. Buka situs web [Railway](https://railway.app/) dan klik tombol `Start a New Project`.
-
-2. Klik pilihan `Deploy from GitHub repo`.
-
-3. Klik tombol `Login With GitHub` dan masuklah ke dalam akun GitHub kamu.
-
-4. Kamu akan kembali ke halaman pembuatan proyek baru. Klik pilihan `Deploy from GitHub repo` dan klik `Configure GitHub App`.
-
-5. Pilih tempat kamu menyimpan repositori program ini dan klik `Install & Authorize`.
-
-6. Kamu akan kembali ke halaman pembuatan proyek baru. Klik pilihan `Deploy from GitHub repo` dan pilih repositori program ini.
-
-7. Klik `Add variables` dan buat variabel baru dengan nama `APP_NAME` dan isikan nama aplikasi kamu yang akan dibuat menjadi URL aplikasi.
-
-8. Klik menu `Settings` dan ubahlah URL yang ada pada bagian `Domains` sesuai dengan `APP_NAME` yang telah dispesifikasikan sebelumnya.
-
-9. Tekan Control + K atau Command + K dan pilih `New Service -> Database -> Add PostgreSQL` untuk menginisiasi basis data PostgreSQL sebagai basis data yang digunakan.
-
-## Lisensi
-
-Templat ini didistribusikan dengan lisensi [MIT](LICENSE).
-
-## Referensi
-
-- [django-template-heroku](https://github.com/laymonage/django-template-heroku)
-- [Templat Proyek Django PBP](https://github.com/pbp-fasilkom-ui/django-pbp-template)
-- [Pindah dari Heroku ke Railway](https://determinedguy.github.io/cecoret/heroku-to-railway/)
+## ⚙️ Features
+1. Login/Logout
+This feature allows users to login and logout to their respective accounts.
+2. ProfileEdit
+This feature allows users to change and manage their profile according to the wishes and preferences of each user
+3. Note
+This feature allows users to record or make important notes that they want to save.
+4. To-Do
+This feature allows users to write down a list of jobs or tasks they need to complete. Users can also write down submission deadlines so they can more easily determine the priority of work that needs to be completed.
+5. Focus-Session
+This feature allows users to activate a timer that is intended so that these users can focus on doing their work within the time range specified by the timer.
+6. Booking appointments
+This feature allows users to view and book other users' schedules. Users who receive booking requests from other users can then choose to approve or reject the request. Received bookings will then be displayed in the schedule calendar.
+7. Accept/Reject Invitation Appointments
+This feature allows users to accept or reject invitations for appointments submitted by other users which is done in feature 6 (booking appointment feature)
+8. Schedule calendar
+This feature allows users to see weekly/monthly schedules.
+9. Notifications
+This feature reminds the user of the next task that must be done in the form of a notification.
+10. Share
+This feature allows users to share schedules with other users.
+11. Help
+This feature helps users in using the application by providing instructions and steps in using the application as well as answers to some frequently asked questions. The questions given will later be answered by the admin if further assistance or live help is needed.
